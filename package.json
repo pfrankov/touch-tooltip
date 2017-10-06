@@ -1,0 +1,45 @@
+{
+  "name": "touch-tooltip",
+  "version": "2.0.0",
+  "description": "Tooltips that works on touch-based devices",
+  "main": "dist/touch-tooltip.css",
+  "style": "dist/touch-tooltip.css",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "post": "postcss -c postcss.config.js -o dist/touch-tooltip.css src/css/*.css",
+    "uglify": "uglifyjs src/js/touch-tooltip.js --compress --mangle -o dist/touch-tooltip.js",
+    "pre": "node-sass src/css/ --output src/css",
+    "watch": "npm run pre -- --watch",
+    "preview": "lite-server --baseDir=\"./\" --open",
+    "server": "concurrently \"npm run preview\" \"npm run watch\"",
+    "build": "npm run pre && npm run post && "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pfrankov/touch-tooltip.git"
+  },
+  "author": {
+    "name": "Pavel Frankov",
+    "email": "pavel@frankov.ru"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pfrankov/touch-tooltip/issues"
+  },
+  "homepage": "https://github.com/pfrankov/touch-tooltip",
+  "devDependencies": {
+    "autoprefixer": "^6.7.7",
+    "concurrently": "^3.4.0",
+    "cssnano": "^3.10.0",
+    "http-server": "^0.9.0",
+    "lite-server": "^2.3.0",
+    "node-sass": "^4.5.3",
+    "postcss-banner": "^3.0.0",
+    "postcss-cli": "^3.0.0",
+    "postcss-csso": "^2.0.0",
+    "postcss-cssstats": "^1.0.0",
+    "uglify-js": "^3.1.3"
+  }
+}

@@ -1,0 +1,60 @@
+@mixin metroTheme($bg-color: #fff, $text-color: #fff) {
+
+	.Content {
+		padding: $INNER_PADDING*2 $INNER_PADDING;
+		color: $text-color;
+		background: $bg-color;
+	}
+
+	&.Top {
+		.Content {
+			// Border part of arrow
+			&:before {
+				border-bottom-color: $bg-color;
+			}
+
+			// Background part of arrow
+			&:after {
+				border-bottom-color: $bg-color;
+			}
+		}
+	}
+
+	&.Bottom {
+		.Content {
+			// Border part of arrow
+			&:before {
+				border-top-color: $bg-color;
+			}
+
+			// Background part of arrow
+			&:after {
+				border-top-color: $bg-color;
+			}
+		}
+	}
+
+	&.Left.Center .Content {
+		// Border part of arrow
+		&:before {
+			border-right-color: $bg-color;
+		}
+
+		// Background part of arrow
+		&:after {
+			border-right-color: $bg-color;
+		}
+	}
+
+	&.Right.Center .Content {
+		// Border part of arrow
+		&:before {
+			border-left-color: $bg-color;
+		}
+
+		// Background part of arrow
+		&:after {
+			border-left-color: $bg-color;
+		}
+	}
+}

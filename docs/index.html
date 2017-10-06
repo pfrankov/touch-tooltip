@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>TouchTooltip</title>
+
+        <link href="../src/css/touch-tooltip.css" rel="stylesheet" />
+
+        <link href="css/bootstrap.min.css" rel="stylesheet" />
+        <link href="css/prism.css" rel="stylesheet" />
+        <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+        <link href="css/page.css" rel="stylesheet" />
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script src="../src/js/touch-tooltip.js"></script>
+
+        <script src="js/prism.js"></script>
+        <script src="js/page.js"></script>
+
+        <!--[if lt IE 8]>
+            <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE8.js"></script>
+        <![endif]-->
+        <!--[if lt IE 9]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="container-narrow">
+            <h1>
+                <div class="TouchTooltip Shadow Round Bottom Default">
+                    <div class="Content">
+                        TouchTooltip<sup>v2</sup>
+                    </div>
+                </div>
+            </h1>
+            <h2>Getting started</h2>
+            <section>
+
+                <article id="tooltips">
+                    <h3>
+                        Simple Tooltips
+                        <small>Actually not exactly a tooltips</small>
+                    </h3>
+
+                    <div class="row">
+                        <div class="span7">
+                            <h4 style="margin-top: 10px;">
+                                How to create a simple tooltip like from the right of this text?
+                            </h4>
+                            <ol>
+                                <li>
+                                    Add style file <code>dist/touch-tooltip.css</code> inside your <code class="language-markup">&lt;head&gt;</code> tag;
+<pre class="language-markup">
+<code>&lt;link href="dist/touch-tooltip.css" rel="stylesheet"/&gt;</code>
+</pre>
+                                </li>
+                                <li>
+                                    Add some element with any you've liked content and with class <code class="language-markup token keyword">Content</code> somewhere on your page;
+<pre class="language-markup">
+<code>&lt;div class="Content"&gt;
+    [tooltip's content]
+&lt;/div&gt;</code>
+</pre>
+                                </li>
+                                <li>Wrap your Tooltip's content element with another element with classes
+
+                                        <span class="ApplyTooltip">
+                                            <code class="language-markup token keyword">TouchTooltip</code>
+
+                                            <span class="TouchTooltip Shadow Round Left Top Default">
+                                                <span class="Content">
+                                                    There is the base class of tooltip
+                                                </span>
+                                            </span>
+                                        </span>
+
+                                        <span class="ApplyTooltip">
+                                            <code class="language-markup token keyword">Bottom</code>
+
+                                            <span class="TouchTooltip Shadow Round Left Bottom Default">
+                                                <span class="Content">
+                                                    Show tiny arrow at the bottom of tooltip
+                                                </span>
+                                            </span>
+                                        </span>
+                                        <span class="ApplyTooltip REMOVE_THIS_CLASS">
+                                            <code class="language-markup token keyword">Default</code>
+
+                                            <span class="TouchTooltip Shadow Round Right Bottom Default">
+                                                <span class="Content">
+                                                    Apply the <a href="#themes">Default</a> color theme
+                                                </span>
+                                            </span>
+                                        </span>;</li>
+                                <li>
+                                    Would be better if you'll add <code>dist/touch-tooltip.js</code> right after jQuery.
+<pre class="language-markup">
+<code>&lt;script src="[path-to-jQuery]/jquery.min.js"&gt;&lt;/script&gt;
+</code><code class="highlight">&lt;script src="dist/touch-tooltip.js"&gt;&lt;/script&gt;</code>
+</pre>
+                                </li>
+                            </ol>
+                        </div>
+                        <div class="span5">
+                            <div class="TouchTooltip Bottom Default">
+                                <div class="Content">
+                                    [tooltip's content]
+                                </div>
+                            </div>
+<pre class="language-markup">
+<code>&lt;div class="TouchTooltip Bottom Default"&gt;
+    &lt;div class="Content"&gt;
+        </code><code class="highlight">[tooltip's content]</code><code>
+    &lt;/div&gt;
+&lt;/div&gt;</code>
+</pre>
+                        </div>
+
+                    </div>
+                </article>
+
+                <article id="inline">
+                    <h3>Tooltips in text</h3>
+
+                    <div class="row">
+                        <div class="span7">
+                            <p>
+                                Simplest way to use the TouchTooltip with text is two steps only:
+                            </p>
+                    <ol>
+                        <li>
+                            Wrap your target word with
+                                <span class="ApplyTooltip REMOVE_THIS_CLASS">
+                                    inline element
+
+                                    <span class="TouchTooltip Small Shadow Round Bottom Default">
+                                        <span class="Content">
+                                            <code class="language-markup">&lt;span&gt;</code> for example
+                                        </span>
+                                    </span>
+                                </span>
+                            with class
+                                <span class="ApplyTooltip">
+                                    <code class="language-markup token keyword">ApplyTooltip</code>
+
+                                    <span class="TouchTooltip Shadow Round Bottom Right Default">
+                                        <span class="Content">
+                                            <code class="language-markup">&lt;span class="ApplyTooltip"&gt;inline element&lt;/span&gt;</code>
+                                        </span>
+                                    </span>
+                                </span>;
+                        </li>
+                        <li>
+                            Put <span class="ApplyTooltip REMOVE_THIS_CLASS">
+                                    inline TouchTooltip
+
+                                    <span class="TouchTooltip Small Shadow Round Top Default">
+                                        <span class="Content">
+                                            All elements inside must be inline.<br/>
+                                            Like <code class="language-markup">&lt;span&gt;</code>
+                                        </span>
+                                    </span>
+                                </span>
+                                <span class="ApplyTooltip">
+                                    right after
+
+                                    <span class="TouchTooltip Shadow Round Top Left Default">
+                                        <span class="Content">
+
+<span class="language-markup">
+<code>&lt;span class="ApplyTooltip"&gt;
+    right after
+
+    &lt;span class="TouchTooltip Top Left Default"&gt;
+        &lt;span class="Content"&gt;
+            Tooltip's content
+        &lt;/span&gt;
+    &lt;/span&gt;
+&lt;/span&gt;</code>
+</span>
+
+                                        </span>
+                                    </span>
+                                </span>
+                            your target word;
+                        </li>
+                    </ol>
+
+                        </div>
+                        <div class="span5">
+<pre class="language-markup">
+<code>&lt;span class="ApplyTooltip"&gt;
+    </code><code class="highlight">[target word]</code><code>
+
+    &lt;span class="TouchTooltip Top Left Default"&gt;
+        &lt;span class="Content"&gt;
+            </code><code class="highlight">[tooltip's content]</code><code>
+        &lt;/span&gt;
+    &lt;/span&gt;
+&lt;/span&gt;</code>
+</pre>
+                        </div>
+                    </div>
+
+
+
+                </article>
+
+                <article id="quick">
+                    <h3>Quick ApplyTooltip</h3>
+
+                    <p>
+                        If you think that adding so much elements and classes is boring and too complicated — you should try this technique:
+                    </p>
+                    <div class="row">
+                        <div class="span4" style="padding-top: 30px">
+                            It is a <span class="ApplyTooltip" title="Frankly not">quickest way</span> to create tooltips!
+                        </div>
+                        <div class="span8">
+<pre class="language-markup">
+<code>So it is a &lt;span class="ApplyTooltip" title="Frankly not"&gt;quickest way&lt;/span&gt;  to create tooltips!</code>
+</pre>
+                        </div>
+                    </div>
+                    <p>
+                        You can even specify all styles for tooltip:
+                    </p>
+                    <div class="row">
+                        <div class="span4" style="padding-top: 30px">
+                            It looks like a <span class="ApplyTooltip" title="Dark round tooltip" data-styles="Shadow Round Top Left Dark">tooltip</span> so it is the tooltip!
+                        </div>
+                        <div class="span8">
+<pre class="language-markup">
+<code>It looks like &lt;span class="ApplyTooltip" title="Dark round tooltip" data-styles="Shadow Round Top Left Dark"&gt;tooltip&lt;/span&gt; so it is the tooltip!</code>
+</pre>
+                        </div>
+                    </div>
+                </article>
+
+                <article id="effects">
+                    <h3>Effects</h3>
+
+                    <div class="row">
+                        <div class="span5">
+                            <div class="TouchTooltip Shadow Bottom Default">
+                                <div class="Content">
+                                    Shadow
+                                </div>
+                            </div>
+
+<pre class="language-markup">
+<code>&lt;div class="TouchTooltip Shadow Bottom Default"&gt;
+    &lt;div class="Content"&gt;
+        Shadow
+    &lt;/div&gt;
+&lt;/div&gt;</code>
+</pre>
+                        </div>
+                        <div class="span5 offset1">
+                            <div class="TouchTooltip Round Bottom Default">
+                                <div class="Content">
+                                    Round
+                                </div>
+                            </div>
+
+<pre class="language-markup">
+<code>&lt;div class="TouchTooltip Round Bottom Default"&gt;
+    &lt;div class="Content"&gt;
+        Round
+    &lt;/div&gt;
+&lt;/div&gt;</code>
+</pre>
+                        </div>
+                    </div>
+
+                </article>
+                <article id="sizes">
+                    <h3>Sizes</h3>
+
+                    <div class="row">
+                        <div class="span5">
+                            <div class="TouchTooltip Small Bottom Default">
+                                <div class="Content">
+                                    Small (150px)
+                                </div>
+                            </div>
+
+<pre class="language-markup">
+<code>&lt;div class="TouchTooltip Small Bottom Default"&gt;
+    &lt;div class="Content"&gt;
+        Small (150px)
+    &lt;/div&gt;
+&lt;/div&gt;</code>
+</pre>
+                        </div>
+                        <div class="span5 offset1">
+                            <div class="TouchTooltip Medium Bottom Default">
+                                <div class="Content">
+                                    Medium (250px)
+                                </div>
+                            </div>
+
+<pre class="language-markup">
+<code>&lt;div class="TouchTooltip Medium Bottom Default"&gt;
+    &lt;div class="Content"&gt;
+        Medium (250px)
+    &lt;/div&gt;
+&lt;/div&gt;</code>
+</pre>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="span5">
+                            <div class="TouchTooltip Large Bottom Default">
+                                <div class="Content">
+                                    Large (350px)
+                                </div>
+                            </div>
+
+<pre class="language-markup">
+<code>&lt;div class="TouchTooltip Large Bottom Default"&gt;
+    &lt;div class="Content"&gt;
+        Large (350px)
+    &lt;/div&gt;
+&lt;/div&gt;</code>
+</pre>
+                        </div>
+                        <div class="span7">
+                            <div class="TouchTooltip Huge Bottom Default">
+                                <div class="Content">
+                                    Huge (450px)
+                                </div>
+                            </div>
+
+<pre class="language-markup">
+<code>&lt;div class="TouchTooltip Huge Bottom Default"&gt;
+    &lt;div class="Content"&gt;
+        Huge (450px)
+    &lt;/div&gt;
+&lt;/div&gt;</code>
+</pre>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="span12">
+                            <div class="TouchTooltip Full Bottom Default">
+                                <div class="Content">
+                                    Full (100%)
+                                </div>
+                            </div>
+
+<pre class="language-markup">
+<code>&lt;div class="TouchTooltip Full Bottom Default"&gt;
+    &lt;div class="Content"&gt;
+        Full (100%)
+    &lt;/div&gt;
+&lt;/div&gt;</code>
+</pre>
+                        </div>
+                    </div>
+
+                    <p>
+                        You can change size definitions in <a href="#customize-theme"><code>src/css/_config.scss</code></a>.
+                    </p>
+
+                    <h4>Understanding of centering</h4>
+
+                    <div class="row">
+                        <div class="span6">
+                            <p>
+                                While
+                                <span class="ApplyTooltip">
+                                    horizontal position
+                                    <span class="TouchTooltip Shadow Round Bottom Left Default">
+                                        <span class="Content">
+                                            <code>Left</code> or <code>Right</code>
+                                        </span>
+                                    </span>
+                                </span>
+                                of arrow is <b>not defined</b>, <code>Bottom</code>/<code>Top</code> means "show an arrow at center bottom/top of tooltip".<br/>
+                            </p>
+                            <div class="TouchTooltip Bottom Default">
+                                <div class="Content">
+                                    Arrow Bottom and center
+                                </div>
+                            </div>
+
+<pre class="language-markup">
+<code>&lt;div class="TouchTooltip Bottom Default"&gt;
+    &lt;div class="Content"&gt;
+        Arrow Bottom and center
+    &lt;/div&gt;
+&lt;/div&gt;</code>
+</pre>
+                        </div>
+                        <div class="span6">
+                            <p>
+                                But when you define any
+                                <span class="ApplyTooltip REMOVE_THIS_CLASS">
+                                    size
+                                    <span class="TouchTooltip Shadow Round Left Center Default">
+                                        <span class="Content">
+                                            <code>Small</code>, <code>Medium</code>, <code>Large</code>, <code>Huge</code>
+                                        </span>
+                                    </span>
+                                </span>
+                                it means: "show an arrow at center bottom/top of tooltip <b>and put whole tooltip to center of his parent or word.</b>"
+                            </p>
+                            <div class="TouchTooltip Medium Bottom Default">
+                                <div class="Content">
+                                    Arrow Bottom and center<br/>
+                                    Centered
+                                </div>
+                            </div>
+
+<pre class="language-markup">
+<code>&lt;div class="TouchTooltip Medium Bottom Default"&gt;
+    &lt;div class="Content"&gt;
+        Arrow Bottom and center&lt;br/&gt;
+        Centered
+    &lt;/div&gt;
+&lt;/div&gt;</code>
+</pre>
+                        </div>
+                    </div>
+                </article>
+
+
+                <article id="arrows">
+                    <h3>Arrow's States</h3>
+
+                    <div class="row">
+                        <div class="span4" style="text-align: center">
+                            <div class="ApplyTooltip NoBorder REMOVE_THIS_CLASS" style="width: 100%">
+                                <div class="state-block">Bottom, Left</div>
+
+                                <div class="TouchTooltip Shadow Round Bottom Left Default">
+                                    <div class="Content">
+                                        <code class="language-markup token keyword">TouchTooltip Shadow Round Bottom Left Default</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="span4" style="text-align: center">
+                            <div class="ApplyTooltip NoBorder" style="width: 100%">
+                                <div class="state-block">
+                                    <p>Bottom, Center</p>
+                                    <small><a href="#sizes">Size</a> must be defined</small>
+                                </div>
+
+                                <div class="TouchTooltip Large Shadow Round Bottom Default">
+                                    <div class="Content">
+                                        <code class="language-markup token keyword">TouchTooltip Large Shadow Round Bottom Default</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="span4" style="text-align: center">
+                            <div class="ApplyTooltip NoBorder REMOVE_THIS_CLASS" style="width: 100%">
+                                <div class="state-block">Bottom, Right</div>
+
+                                <div class="TouchTooltip Shadow Round Bottom Right Default">
+                                    <div class="Content">
+                                        <code class="language-markup token keyword">TouchTooltip Shadow Round Bottom Right Default</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="span4" style="text-align: center">
+                            <div class="ApplyTooltip NoBorder REMOVE_THIS_CLASS" style="width: 100%">
+                                <div class="state-block">
+                                    <p>Left, Center</p>
+                                    <small>better works with enabled JavaScript</small>
+                                </div>
+
+                                <div class="TouchTooltip Shadow Round Left Center Default">
+                                    <div class="Content">
+                                        <code class="language-markup token keyword">TouchTooltip Shadow Round Left Center Default</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="span4" style="text-align: center">
+
+                        </div>
+                        <div class="span4" style="text-align: center">
+                            <div class="ApplyTooltip NoBorder" style="width: 100%">
+                                <div class="state-block">
+                                    <p>Right, Center</p>
+                                    <small>better works with enabled JavaScript</small>
+                                </div>
+
+                                <div class="TouchTooltip Shadow Round Right Center Default">
+                                    <div class="Content">
+                                        <code class="language-markup token keyword">TouchTooltip Shadow Round Right Center Default</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="span4" style="text-align: center">
+                            <div class="ApplyTooltip NoBorder" style="width: 100%">
+                                <div class="state-block">Top, Left</div>
+
+                                <div class="TouchTooltip Shadow Round Top Left Default">
+                                    <div class="Content">
+                                        <code class="language-markup token keyword">TouchTooltip Shadow Round Top Left Default</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="span4" style="text-align: center">
+                            <div class="ApplyTooltip NoBorder REMOVE_THIS_CLASS" style="width: 100%">
+                                <div class="state-block">
+                                    <p>Top, Center</p>
+                                    <small><a href="#sizes">Size</a> must be defined</small>
+                                </div>
+
+                                <div class="TouchTooltip Large Shadow Round Top Default">
+                                    <div class="Content">
+                                        <code class="language-markup token keyword">TouchTooltip Large Shadow Round Top Default</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="span4" style="text-align: center">
+                            <div class="ApplyTooltip NoBorder" style="width: 100%">
+                                <div class="state-block">Top, Right</div>
+
+                                <div class="TouchTooltip Shadow Round Top Right Default">
+                                    <div class="Content">
+                                        <code class="language-markup token keyword">TouchTooltip Shadow Round Top Right Default</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="themes" id="themes">
+                    <h3>Themes</h3>
+
+                    <div class="row">
+                        <div class="span6">
+                            <p>
+                                Changing a theme for TouchTooltips is pretty easy:<br/>
+                                Pick one of awesome classes from list below. Let's say the <code class="language-markup token keyword">Dark</code>.
+                            </p>
+                            <div class="TouchTooltip Shadow Round Bottom Right Dark">
+                                <div class="Content">
+                                    I'm so dark!
+                                </div>
+                            </div>
+                            <div style="border-radius: 100%; background: #000; margin:3px 0 0 55px; width: 30px; height: 30px;"></div>
+                        </div>
+                        <div class="span6">
+<pre class="language-markup">
+<code class="highlight">&lt;div class="TouchTooltip Shadow Round Bottom Right Dark"&gt;</code><code>
+    &lt;div class="Content"&gt;
+        I'm so dark!
+    &lt;/div&gt;
+&lt;/div&gt;</code>
+</pre>
+                        </div>
+                    </div>
+
+                    <h4>Gradient</h4>
+                    <div style="text-align: center; margin-bottom: 30px">
+                        Toggle
+                        <div class="btn-group">
+                            <button class="btn Actions ToggleShadow" data-toggler="toggler1">Shadow</button>
+                            <button class="btn Actions ToggleRoundness" data-toggler="toggler1">Roundness</button>
+                            <button class="btn Actions ToggleBackground" data-toggler="toggler1">Background</button>
+                        </div>
+
+                    </div>
+                    <div class="toggler" id="toggler1">
+                        <div class="row">
+                            <div class="span4">
+                                <div class="TouchTooltip Small Shadow Round Bottom Default">
+                                    <div class="Content">
+                                        Default
+                                    </div>
+                                </div>
+                                <div style="text-align: center">
+                                    <code class="language-markup token keyword">... Default</code>
+                                </div>
+                            </div>
+                            <div class="span4">
+                                <div class="TouchTooltip Small Shadow Round Bottom Dark">
+                                    <div class="Content">
+                                        Dark
+                                    </div>
+                                </div>
+                                <div style="text-align: center">
+                                    <code class="language-markup token keyword">... Dark</code>
+                                </div>
+                            </div>
+                            <div class="span4">
+                                <div class="TouchTooltip Small Shadow Round Bottom Success">
+                                    <div class="Content">
+                                        Success
+                                    </div>
+                                </div>
+                                <div style="text-align: center">
+                                    <code class="language-markup token keyword">... Success</code>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="span4">
+                                <div class="TouchTooltip Small Shadow Round Bottom Warning">
+                                    <div class="Content">
+                                        Warning
+                                    </div>
+                                </div>
+                                <div style="text-align: center">
+                                    <code class="language-markup token keyword">... Warning</code>
+                                </div>
+                            </div>
+                            <div class="span4">
+                                <div class="TouchTooltip Small Shadow Round Bottom Danger">
+                                    <div class="Content">
+                                        Danger
+                                    </div>
+                                </div>
+                                <div style="text-align: center">
+                                    <code class="language-markup token keyword">... Danger</code>
+                                </div>
+                            </div>
+                            <div class="span4">
+                                <div class="TouchTooltip Small Shadow Round Bottom Note">
+                                    <div class="Content">
+                                        Note
+                                    </div>
+                                </div>
+                                <div style="text-align: center">
+                                    <code class="language-markup token keyword">... Note</code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h4>
+                        Metro-like
+                        <small>Colors from Metro style guide</small>
+                    </h4>
+                    <div style="text-align: center; margin-bottom: 30px">
+                        Toggle
+                        <div class="btn-group">
+                            <button class="btn Actions ToggleShadow" data-toggler="toggler2">Shadow</button>
+                            <button class="btn Actions ToggleRoundness" data-toggler="toggler2">Roundness</button>
+                            <button class="btn Actions ToggleBackground" data-toggler="toggler2">Background</button>
+                        </div>
+
+                    </div>
+                    <div class="toggler" id="toggler2">
+                        <div class="row">
+                            <div class="span4">
+                                <div class="TouchTooltip Small Bottom Metro Purple">
+                                    <div class="Content">
+                                        Purple
+                                    </div>
+                                </div>
+                                <div style="text-align: center">
+                                    <code class="language-markup token keyword">... Metro Purple</code>
+                                </div>
+                            </div>
+                            <div class="span4">
+                                <div class="TouchTooltip Small Bottom Metro Magenta">
+                                    <div class="Content">
+                                        Magenta
+                                    </div>
+                                </div>
+                                <div style="text-align: center">
+                                    <code class="language-markup token keyword">... Metro Magenta</code>
+                                </div>
+                            </div>
+                            <div class="span4">
+                                <div class="TouchTooltip Small Bottom Metro Teal">
+                                    <div class="Content">
+                                        Teal
+                                    </div>
+                                </div>
+                                <div style="text-align: center">
+                                    <code class="language-markup token keyword">... Metro Teal</code>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="span4">
+                                <div class="TouchTooltip Small Bottom Metro Lime">
+                                    <div class="Content">
+                                        Lime
+                                    </div>
+                                </div>
+                                <div style="text-align: center">
+                                    <code class="language-markup token keyword">... Metro Lime</code>
+                                </div>
+                            </div>
+                            <div class="span4">
+                                <div class="TouchTooltip Small Bottom Metro Brown">
+                                    <div class="Content">
+                                        Brown
+                                    </div>
+                                </div>
+                                <div style="text-align: center">
+                                    <code class="language-markup token keyword">... Metro Brown</code>
+                                </div>
+                            </div>
+                            <div class="span4">
+                                <div class="TouchTooltip Small Bottom Metro Pink">
+                                    <div class="Content">
+                                        Pink
+                                    </div>
+                                </div>
+                                <div style="text-align: center">
+                                    <code class="language-markup token keyword">... Metro Pink</code>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="span4">
+                                <div class="TouchTooltip Small Bottom Metro Orange">
+                                    <div class="Content">
+                                        Orange
+                                    </div>
+                                </div>
+                                <div style="text-align: center">
+                                    <code class="language-markup token keyword">... Metro Orange</code>
+                                </div>
+                            </div>
+                            <div class="span4">
+                                <div class="TouchTooltip Small Bottom Metro Blue">
+                                    <div class="Content">
+                                        Blue
+                                    </div>
+                                </div>
+                                <div style="text-align: center">
+                                    <code class="language-markup token keyword">... Metro Blue</code>
+                                </div>
+                            </div>
+                            <div class="span4">
+                                <div class="TouchTooltip Small Bottom Metro Red">
+                                    <div class="Content">
+                                        Red
+                                    </div>
+                                </div>
+                                <div style="text-align: center">
+                                    <code class="language-markup token keyword">... Metro Red</code>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="offset4 span4">
+                                <div class="TouchTooltip Small Bottom Metro Green">
+                                    <div class="Content">
+                                        Green
+                                    </div>
+                                </div>
+                                <div style="text-align: center">
+                                    <code class="language-markup token keyword">... Metro Green</code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article id="theme-recipe">
+                    <h4 id="customize-theme">Customizing values</h4>
+                    <div class="row">
+                        <div class="span9">
+                            <p>
+                                Find config constants and change them as you want. That's all. So easy.<br/>
+                                I'm almost sure you will deal with it and there is no need to explain what each constant means.
+                            </p>
+                        </div>
+                        <div class="span3">
+<pre>
+<code>$SMALL_SIZE: 150px;
+$MEDIUM_SIZE: 250px;
+$LARGE_SIZE: 350px;
+$HUGE_SIZE: 450px;
+
+$INNER_PADDING: 10px;
+
+$SHADOW_OFFSET_LEFT: 0;
+$SHADOW_OFFSET_TOP: 2px;
+$SHADOW_STRENGTH: 4px;
+
+$BORDER_RADIUS: 5px;
+$BORDER_WIDTH: 1px;
+
+$ARROW_SIZE: 6px;</code>
+</pre>
+                        </div>
+                    </div>
+
+
+                    <h4 id="create-theme">Creating a theme</h4>
+                    <p>
+                        Scroll to the end of file or use text search for <code>YourNewTheme</code>. That theme is <em>gradient style</em>, so you need <b>only three</b> colors:
+                    </p>
+                    <div class="row">
+                        <div class="span5">
+                            <ol>
+                                <li>Top color of gradient;</li>
+                                <li>Bottom color of gradient;</li>
+                                <li>Text color (usually black or white).</li>
+                            </ol>
+                        </div>
+                        <div class="span7">
+<pre class="language-css">
+<code>&.YourNewTheme {
+    $top-color: #eef3f5;
+    $bottom-color: #d8e3e9;
+    $text-color: #000;
+    @include defaultTheme($top-color, $top-color, $text-color);
+}</code>
+</pre>
+                        </div>
+                    </div>
+
+                </article>
+            </section>
+
+            <section id="restrictions">
+                <h2>Limitations</h2>
+
+                <article id="browsers">
+                    <h3>Browsers</h3>
+
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th></th>
+                                <th>Chrome</th>
+                                <th>Safari</th>
+                                <th>Firefox 3.6+</th>
+                                <th>Opera</th>
+                                <th>Opera Mini</th>
+                                <th>iOS</th>
+                                <th>Android</th>
+                                <th>IE7</th>
+                                <th>IE8</th>
+                                <th>IE9</th>
+                                <th>IE10</th>
+                            </tr>
+                            <tr>
+                                <th><a href="#themes">Gradient</a></th>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                            </tr>
+                            <tr>
+                                <th><a href="#arrows">Arrow</a></th>
+                                <td class="success"></td>
+                                <td class="warning">Without antialiasing before 6.0</td>
+                                <td class="success"></td>
+                                <td class="warning">Without antialiasing</td>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                                <td class="warning">Without antialiasing</td>
+                                <td class="warning">Gradient is always on top</td>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                            </tr>
+                            <tr>
+                                <th><a href="#effects">Roundness</a></th>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                                <td class="danger"></td>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                                <td class="danger"></td>
+                                <td class="danger"></td>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                            </tr>
+                            <tr>
+                                <th><a href="#effects">Shadow</a></th>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                                <td class="danger"></td>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                                <td class="danger"></td>
+                                <td class="danger"></td>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                            </tr>
+                            <tr>
+                                <th><a href="#inline">Inline usage</a></th>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                                <td class="warning">Only if <code class="language-markup token keyword">.ApplyToggle</code> is <code class="language-markup">&lt;a&gt;</code> with <code>href="#"</code></td>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                                <td class="danger"></td>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                            </tr>
+                            <tr>
+                                <th>Smooth animation</th>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                                <td class="danger"></td>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                                <td class="danger"></td>
+                                <td class="danger"></td>
+                                <td class="danger"></td>
+                                <td class="success"></td>
+                            </tr>
+                            <tr>
+                                <th>No JavaScript</th>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                                <td class="danger">With jQuery</td>
+                                <td class="success"></td>
+                                <td class="danger">No arrows<br/><a href="http://code.google.com/p/ie7-js/">IE8.js</a></td>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                                <td class="success"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </article>
+                <article id="js">
+                    <h3>JavaScript</h3>
+                    <p>The first and most important — you really need <a href="http://jquery.com/download/" target="_blank">jQuery</a> to execute JavaScript part of TouchTooltip.</p>
+                    <p>Secondly — if an user turn JavaScript off — most of features will still work. But, unfortunately, not all. Here is a list of JavaScript-depended features:</p>
+                    <ul>
+                        <li><a href="#quick">Quick ApplyTooltip</a>;</li>
+                        <li><code>Left Center</code> and <code>Right Center</code> <a href="#arrows">positions</a> during <a href="#inline">inline usage</a> (height is not defined)</li>
+                    </ul>
+                </article>
+            </section>
+
+            <section id="examples">
+                <h2>Other examples</h2>
+                <article>
+                    <h3>Images</h3>
+
+                    <div class="row">
+                        <div class="span6">
+                            <div class="ApplyTooltip REMOVE_THIS_CLASS">
+                                Image of cat introvert inside the TouchTooltip
+                                <div class="TouchTooltip Large Top Dark Shadow">
+                                    <div class="Content">
+                                        <img src="img/cat-introvert.jpg" width="100%" alt="Cat introvert"/>
+                                    </div>
+                                </div>
+                            </div>
+<pre class="language-markup">
+<code>&lt;div class="ApplyTooltip"&gt;
+    Image of cat introvert inside the TouchTooltip
+
+    &lt;div class="TouchTooltip Large Top Dark Shadow"&gt;
+        &lt;div class="Content"&gt;
+            &lt;img src="img/cat-introvert.jpg" width="100%"/&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code>
+</pre>
+                        </div>
+                        <div class="span6">
+                            <div class="ApplyTooltip REMOVE_THIS_CLASS">
+                                <img src="img/cat-introvert.jpg" width="100%" alt="Cat introvert"/>
+                                <div class="TouchTooltip Full Bottom Metro Pink">
+                                    <div class="Content">
+                                        Cat introvert
+                                    </div>
+                                </div>
+                            </div>
+<pre class="language-markup">
+<code>&lt;div class="ApplyTooltip"&gt;
+    &lt;img src="img/cat-introvert.jpg" width="100%"/&gt;
+
+    &lt;div class="TouchTooltip Full Bottom Metro Pink"&gt;
+        &lt;div class="Content"&gt;
+            Cat introvert
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code>
+</pre>
+                        </div>
+
+                    </div>
+                </article>
+                <article>
+                    <h3>As UI element</h3>
+
+                    <div class="row">
+                        <div class="span3">
+                            <div class="TouchTooltip Full Bottom Left Dark">
+                                <div class="Content">
+                                    <i>Hello guys! My name is Boris. Boris "The Blade".</i>
+                                </div>
+                            </div>
+                            <img src="img/cat-introvert.jpg" width="100%" alt="Cat introvert" style="margin-top: 5px;"/>
+                        </div>
+                        <div class="span9">
+<pre class="language-markup">
+<code>&lt;div class="TouchTooltip Full Bottom Left Dark"&gt;
+    &lt;div class="Content"&gt;
+        &lt;i&gt;Hello guys! My name is Boris. Boris "The Blade".&lt;/i&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;img src="img/cat-introvert.jpg" width="100%"/&gt;
+</code>
+</pre>
+                        </div>
+                    </div>
+                </article>
+            </section>
+
+            <section id="changelog">
+                <h2>Changelog</h2>
+				<article>
+					<h3>1.2</h3>
+					<ul>
+						<li>
+							Updated code for usage with jQuery from 1.9;
+						</li>
+						<li>
+							Tooltip's hiding improved (issue touchtooltip-4);
+						</li>
+						<li>
+							Fixed touch behavior on iOS (issue touchtooltip-5).
+						</li>
+					</ul>
+				</article>
+                <article>
+                    <h3>1.1</h3>
+                    <ul>
+                        <li>
+                            Major changes in structure of project;
+                        </li>
+                        <li>
+                            Added minified version to <code>minified</code> directory;
+                        </li>
+                        <li>
+                            Fixed adding links to the tooltip;
+                        </li>
+                        <li>
+                            Changed name of folder <code>lib</code> to <code>executable</code>.
+                        </li>
+                    </ul>
+                </article>
+                <article>
+                    <h3>1.02</h3>
+                    <ul>
+                        <li>
+                            Fixed positioning during inline usage;
+                        </li>
+                        <li>
+                            Left was set as the default position when horizontal position isn't specified.
+                        </li>
+                    </ul>
+                </article>
+                <article>
+                    <h3>1.01</h3>
+                    <ul>
+                        <li>
+                            Fixed a bug with alignment of the tooltip with fixed size;
+                        </li>
+                        <li>
+                            Added the Full (100%) size;
+                        </li>
+                        <li>
+                            Added some examples.
+                        </li>
+                    </ul>
+                </article>
+            </section>
+        </div>
+
+    </body>
+</html>

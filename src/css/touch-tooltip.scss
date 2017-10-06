@@ -1,0 +1,729 @@
+/*
+*	TouchTooltip v2
+*	https://github.com/pfrankov/touch-tooltip
+*	Please use minified version!
+*/
+
+
+//          IMPORTANT!
+//
+// If you want to change some values, create theme which will override that values instead!
+// You can find themes at the end of this file
+//
+
+@import "config";
+@import "touch-tooltip-default-theme"; // import default theme
+@import "touch-tooltip-metro-theme"; // import metro theme
+
+
+.ApplyTooltip {
+	display: inline-block;
+
+	position: relative;
+	vertical-align: baseline;
+
+	.TouchTooltip {
+		display: block;
+		position: absolute;
+		z-index: 100;
+		visibility: hidden;
+		opacity: 0;
+
+		&.Top,
+		&.Bottom {
+			left: 0; // Default position
+
+			&.Left {
+				left: 0 !important;
+			}
+			&.Right {
+				right: 0 !important;
+			}
+		}
+		&.Top {
+			top: 80%;
+		}
+		&.Bottom {
+			bottom: 80%;
+		}
+		&.Left {
+			left: 0;
+			right: auto;
+		}
+		&.Right {
+			right: 0;
+			left: auto;
+		}
+		&.Center {
+			left: 0;
+			right: 0;
+
+			&.Left {
+				top: -50%;
+				left: 90%;
+				margin: {
+					left: 0;
+					top: - $BORDER_WIDTH*2;
+				}
+				right: auto;
+			}
+			&.Right {
+				top: -50%;
+				right: 90%;
+				margin: {
+					right: 0;
+					top: - $BORDER_WIDTH*2;
+				}
+				left: auto;
+			}
+		}
+		transition: top .2s ease-in .2s, bottom .2s ease-in .2s, left .2s ease-in .2s, right .2s ease-in .2s, opacity .2s linear .2s;
+	}
+
+	&:hover,
+	&.fakeHover {
+		.TouchTooltip {
+			&.Top {
+				top: 100%;
+			}
+			&.Bottom {
+				bottom: 100%;
+			}
+			&.Center {
+				&.Left {
+					left: 100%;
+				}
+				&.Right {
+					right: 100%;
+				}
+			}
+
+
+			visibility: visible;
+			opacity: 1;
+
+			transition: opacity .2s, top .2s ease-out, bottom .2s ease-out, left .2s ease-out, right .2s ease-out;
+
+			&.AnimationStopped {
+				transition-duration: 0s;
+			}
+		}
+	}
+
+	// Dirty, dirty hack for iOS Safari
+	&.iOS {
+		&:hover {
+			.TouchTooltip {
+				&.Top {
+					top: 80%;
+					margin-top: $ARROW_SIZE*2;
+				}
+				&.Bottom {
+					bottom: 80%;
+					margin-bottom: $ARROW_SIZE*2;
+				}
+				&.Center {
+					&.Left {
+						left: 90%;
+					}
+					&.Right {
+						right: 90%;
+					}
+				}
+
+				visibility: hidden;
+				opacity: 0;
+
+				transition: none;
+			}
+		}
+	}
+}
+a.ApplyTooltip {
+	// To look like <dfn>
+	text-decoration: none;
+	border-bottom: 1px dotted;
+	font-style: italic;
+	cursor: help;
+	display: inline;
+	color: inherit;
+
+	&.Box {
+		display: inline-block;
+		vertical-align: baseline;
+	}
+}
+
+
+
+
+// TouchTooltip's styles
+.TouchTooltip {
+	display: inline-block;
+	vertical-align: baseline;
+	transition: opacity .3s, top .2s;
+	font-style: normal;
+	text-decoration: none;
+	position: relative;
+	cursor: default;
+	white-space: nowrap;
+	z-index: 1;
+
+	// Shadow part of arrow
+	&:before {
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: $ARROW_SIZE*3.3;
+		line-height: 1.3em;
+		font-weight: bold;
+		color: transparent;
+		position: absolute;
+		width: $ARROW_SIZE*2 + $BORDER_WIDTH*2;
+		height: $ARROW_SIZE*2 + $BORDER_WIDTH*2;
+		transition: all 0.5s;
+
+		text-align: center;
+		z-index: -1;
+	}
+
+	.Content {
+		display: block;
+		padding: $INNER_PADDING;
+		text-align: center;
+
+		&:not([ie]) {
+			filter: progid:DXImageTransform.Microsoft.gradient(enabled='false');
+		}
+
+		// Border part of arrow
+		&:before {
+			content: "";
+			border: $ARROW_SIZE + $BORDER_WIDTH inset transparent;
+			width: 0;
+			height: 0;
+			position: absolute;
+		}
+
+		// Background part of arrow
+		&:after {
+			content: "";
+			border: $ARROW_SIZE inset transparent;
+			width: 0;
+			height: 0;
+			position: absolute;
+		}
+
+		transition: all 0.5s;
+	}
+
+	// Sizes
+	&.Small {
+		width: $SMALL_SIZE;
+		white-space: normal;
+
+		&.Top,
+		&.Bottom {
+			left: 50%;
+			margin-left: - $SMALL_SIZE / 2;
+			right: auto;
+
+			&.Left,
+			&.Right {
+				left: auto;
+				right: auto;
+				margin-left: auto;
+			}
+		}
+	}
+	&.Medium {
+		width: $MEDIUM_SIZE;
+		white-space: normal;
+
+		&.Top,
+		&.Bottom {
+			left: 50%;
+			margin-left: - $MEDIUM_SIZE / 2;
+			right: auto;
+
+			&.Left,
+			&.Right {
+				left: auto;
+				right: auto;
+				margin-left: auto;
+			}
+		}
+	}
+	&.Large {
+		width: $LARGE_SIZE;
+		white-space: normal;
+
+		&.Top,
+		&.Bottom {
+			left: 50%;
+			margin-left: - $LARGE_SIZE / 2;
+			right: auto;
+
+			&.Left,
+			&.Right {
+				left: auto;
+				right: auto;
+				margin-left: auto;
+			}
+		}
+	}
+	&.Huge {
+		width: $HUGE_SIZE;
+		white-space: normal;
+
+		&.Top,
+		&.Bottom {
+			left: 50%;
+			margin-left: - $HUGE_SIZE / 2;
+			right: auto;
+
+			&.Left,
+			&.Right {
+				left: auto;
+				right: auto;
+				margin-left: auto;
+			}
+		}
+	}
+	&.Full {
+		width: 100%;
+		white-space: normal;
+
+		&.Top,
+		&.Bottom {
+			left: 0;
+			right: 0;
+
+			&.Left,
+			&.Right {
+				left: 0;
+				right: 0;
+			}
+		}
+	}
+
+	&.Shadow {
+		&:before {
+			text-shadow: $SHADOW_OFFSET_LEFT $SHADOW_OFFSET_TOP $SHADOW_STRENGTH rgba(#000, .3);
+		}
+
+		.Content {
+			box-shadow: $SHADOW_OFFSET_LEFT $SHADOW_OFFSET_TOP $SHADOW_STRENGTH rgba(#000, .3);
+		}
+	}
+	&.Round .Content {
+		border-radius: $BORDER_RADIUS;
+	}
+
+
+
+	////////////
+	// Arrows //
+	////////////
+	&.Top{
+		padding-top: $ARROW_SIZE *2 - $BORDER_WIDTH;
+
+		// Shadow part of arrow
+		&:before {
+			content: "^";
+			top: 0;
+
+			left: 50%;
+			margin-left: - $ARROW_SIZE - $BORDER_WIDTH;
+		}
+
+		.Content {
+			// Border part of arrow
+			&:before {
+				border: {
+					top: {
+						width: $ARROW_SIZE *2 - $BORDER_WIDTH;
+					}
+					bottom: {
+						width: $ARROW_SIZE *2;
+						style: solid
+					}
+				}
+
+				top: $BORDER_WIDTH - $ARROW_SIZE*2;
+				left: 50%;
+				margin-left: - $ARROW_SIZE - $BORDER_WIDTH;
+			}
+
+			// Background part of arrow
+			&:after {
+				border: {
+					top: {
+						width: ($ARROW_SIZE  *2 - $BORDER_WIDTH);
+					}
+					bottom: {
+						width: ($ARROW_SIZE  *2 - $BORDER_WIDTH);
+						style: solid;
+					}
+				}
+
+				top: $BORDER_WIDTH - $ARROW_SIZE*2 + $BORDER_WIDTH*2;
+				left: 50%;
+				margin-left: - $ARROW_SIZE;
+			}
+		}
+
+		&.Left {
+			// Shadow part of arrow
+			&:before {
+				left: $BORDER_RADIUS + $ARROW_SIZE;
+				margin-left: 0;
+			}
+
+			.Content {
+				text-align: left;
+
+				// Border part of arrow
+				&:before {
+					left: $BORDER_RADIUS + $ARROW_SIZE;
+					margin-left: 0;
+				}
+
+				// Background part of arrow
+				&:after {
+					left: $BORDER_RADIUS + $ARROW_SIZE + $BORDER_WIDTH;
+					margin-left: 0;
+				}
+			}
+		}
+
+		&.Right {
+			// Shadow part of arrow
+			&:before {
+				right: $BORDER_RADIUS + $ARROW_SIZE;
+				left: auto;
+				margin-left: 0;
+			}
+			.Content {
+				text-align: right;
+
+				// Border part of arrow
+				&:before {
+					right: $BORDER_RADIUS + $ARROW_SIZE;
+					left: auto;
+					margin-left: 0;
+				}
+
+				// Background part of arrow
+				&:after {
+					right: $BORDER_RADIUS + $ARROW_SIZE + $BORDER_WIDTH;
+					left: auto;
+					margin-left: 0;
+				}
+			}
+		}
+
+	}
+
+
+	&.Bottom {
+		padding-bottom: $ARROW_SIZE *2 - $BORDER_WIDTH;
+
+		// Shadow part of arrow
+		&:before {
+			content: "v";
+			bottom: $ARROW_SIZE;
+			left: 50%;
+			margin-left: - $ARROW_SIZE - $BORDER_WIDTH;
+		}
+
+		.Content {
+			// Border part of arrow
+			&:before {
+				border: {
+					top: {
+						width: $ARROW_SIZE * 2;
+						style: solid;
+					}
+					bottom: {
+						width: $ARROW_SIZE * 2 - $BORDER_WIDTH;
+					}
+				}
+
+				bottom: $BORDER_WIDTH - $ARROW_SIZE*2;
+				left: 50%;
+				margin-left: - $ARROW_SIZE - $BORDER_WIDTH;
+			}
+
+			// Background part of arrow
+			&:after {
+				border: {
+					top: {
+						width: ($ARROW_SIZE  *2 - $BORDER_WIDTH);
+						style: solid;
+					}
+					bottom: {
+						width: ($ARROW_SIZE  *2 - $BORDER_WIDTH);
+					}
+				}
+
+				bottom: $BORDER_WIDTH - $ARROW_SIZE*2 + $BORDER_WIDTH*2;
+				left: 50%;
+				margin-left: - $ARROW_SIZE;
+			}
+		}
+		&.Left {
+			// Shadow part of arrow
+			&:before {
+				left: $BORDER_RADIUS + $ARROW_SIZE;
+				margin-left: 0;
+			}
+
+			.Content {
+				text-align: left;
+
+				// Border part of arrow
+				&:before {
+					left: $BORDER_RADIUS + $ARROW_SIZE;
+					margin-left: 0;
+				}
+
+				// Background part of arrow
+				&:after {
+					left: $BORDER_RADIUS + $ARROW_SIZE + $BORDER_WIDTH;
+					margin-left: 0;
+				}
+			}
+		}
+		&.Right {
+			// Shadow part of arrow
+			&:before {
+				right: $BORDER_RADIUS + $ARROW_SIZE;
+				left: auto;
+				margin-left: 0;
+			}
+			.Content {
+				text-align: right;
+
+				// Border part of arrow
+				&:before {
+					right: $BORDER_RADIUS + $ARROW_SIZE;
+					left: auto;
+					margin-left: 0;
+				}
+
+				// Background part of arrow
+				&:after {
+					right: $BORDER_RADIUS + $ARROW_SIZE + $BORDER_WIDTH;
+					left: auto;
+					margin-left: 0;
+				}
+			}
+		}
+	}
+	&.Left {
+		// Shadow part of arrow
+		&:before {
+			left: $BORDER_RADIUS + $ARROW_SIZE;
+		}
+
+		.Content {
+			text-align: left;
+
+			// Border part of arrow
+			&:before {
+				left: $BORDER_RADIUS + $ARROW_SIZE;
+			}
+
+			// Background part of arrow
+			&:after {
+				left: $BORDER_RADIUS + $ARROW_SIZE + $BORDER_WIDTH;
+			}
+		}
+
+		&.Center {
+			padding-left: $ARROW_SIZE *2 - $BORDER_WIDTH;
+
+			// Shadow part of arrow
+			&:before {
+				content: "<";
+				top: 50%;
+				margin-top: - $ARROW_SIZE*2;
+				left: 0;
+			}
+			.Content {
+				// Border part of arrow
+				&:before {
+					border: {
+						left: {
+							width: $ARROW_SIZE *2 - $BORDER_WIDTH;
+						}
+						right: {
+							width: $ARROW_SIZE *2;
+							style: solid;
+						}
+					}
+
+					top: 50%;
+					margin-top: - $ARROW_SIZE - $BORDER_WIDTH;
+
+					left: $BORDER_WIDTH - $ARROW_SIZE*2;
+				}
+
+				// Background part of arrow
+				&:after {
+					border: {
+						left: {
+							width: ($ARROW_SIZE  *2 - $BORDER_WIDTH);
+						}
+						right: {
+							width: ($ARROW_SIZE  *2 - $BORDER_WIDTH);
+							style: solid;
+						}
+					}
+
+					top: 50%;
+					margin-top: - $ARROW_SIZE;
+
+					left: $BORDER_WIDTH - $ARROW_SIZE*2 + $BORDER_WIDTH*2;
+				}
+			}
+
+
+		}
+	}
+	&.Right {
+		// Shadow part of arrow
+		&:before {
+			right: $BORDER_RADIUS + $ARROW_SIZE;
+		}
+		.Content {
+			text-align: right;
+
+			// Border part of arrow
+			&:before {
+				right: $BORDER_RADIUS + $ARROW_SIZE;
+			}
+
+			// Background part of arrow
+			&:after {
+				right: $BORDER_RADIUS + $ARROW_SIZE + $BORDER_WIDTH;
+			}
+		}
+
+
+		&.Center {
+			padding-right: $ARROW_SIZE *2 - $BORDER_WIDTH;
+
+			// Shadow part of arrow
+			&:before {
+				content: ">";
+				top: 50%;
+				margin-top: - $ARROW_SIZE*2;
+				right: 0;
+			}
+			.Content {
+				// Border part of arrow
+				&:before {
+					border: {
+						right: {
+							width: $ARROW_SIZE *2 - $BORDER_WIDTH;
+						}
+						left: {
+							width: $ARROW_SIZE *2;
+							style: solid;
+						}
+					}
+
+					top: 50%;
+					margin-top: - $ARROW_SIZE - $BORDER_WIDTH;
+
+					right: $BORDER_WIDTH - $ARROW_SIZE*2;
+				}
+
+				// Background part of arrow
+				&:after {
+					border: {
+						right: {
+							width: ($ARROW_SIZE  *2 - $BORDER_WIDTH);
+						}
+						left: {
+							width: ($ARROW_SIZE  *2 - $BORDER_WIDTH);
+							style: solid;
+						}
+					}
+
+					top: 50%;
+					margin-top: - $ARROW_SIZE;
+
+					right: $BORDER_WIDTH - $ARROW_SIZE*2 + $BORDER_WIDTH*2;
+				}
+			}
+		}
+	}
+
+
+
+	////////////
+	// Themes //
+	////////////
+
+	&.Default {
+		@include defaultTheme;
+	}
+	&.Success {
+		@include defaultTheme(#a3cc00, #69c000, #fff);
+	}
+	&.Danger {
+		@include defaultTheme(#e00, #b70000, #fff);
+	}
+	&.Warning {
+		@include defaultTheme(#fa0, #e06e1a, #fff);
+	}
+	&.Dark {
+		@include defaultTheme(#555, #333, #fff);
+	}
+	&.Note {
+		@include defaultTheme(#eef3f5, #d8e3e9, #000);
+	}
+
+	&.YourNewTheme {
+		$top-color: #eef3f5;
+		$bottom-color: #d8e3e9;
+
+		$text-color: #000;
+
+		@include defaultTheme($top-color, $top-color, $text-color);
+	}
+
+	&.Metro {
+		&.Purple {
+			@include metroTheme(#a200ff, #fff);
+		}
+		&.Magenta {
+			@include metroTheme(#ff0097, #fff);
+		}
+		&.Teal {
+			@include metroTheme(#00aba9, #fff);
+		}
+		&.Lime {
+			@include metroTheme(#8cbf26, #fff);
+		}
+		&.Brown {
+			@include metroTheme(#a05000, #fff);
+		}
+		&.Pink {
+			@include metroTheme(#e671b8, #fff);
+		}
+		&.Orange {
+			@include metroTheme(#f09609, #fff);
+		}
+		&.Blue {
+			@include metroTheme(#1ba1e2, #fff);
+		}
+		&.Red {
+			@include metroTheme(#e51400, #fff);
+		}
+		&.Green {
+			@include metroTheme(#393, #fff);
+		}
+	}
+}

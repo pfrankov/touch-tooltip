@@ -1,0 +1,72 @@
+@mixin defaultTheme($first-color: #fff, $second-color: #eee, $text-color: #333) {
+
+	.Content {
+		border: $BORDER_WIDTH solid lighten($first-color, 2);
+		color: $text-color;
+
+		background-image: linear-gradient(to bottom, $first-color, $second-color);
+
+		@if lightness($text-color) > 50% {
+			text-shadow: -1px -1px 1px darken($second-color, 1);
+
+		} @else {
+			text-shadow: 1px 1px 1px lighten($first-color, 2);
+		}
+
+		&:not([ie]) {
+			filter: progid:DXImageTransform.Microsoft.gradient(enabled='false');
+		}
+	}
+
+	&.Top {
+		.Content {
+			// Border part of arrow
+			&:before {
+				border-bottom-color: lighten($first-color, 2);
+			}
+
+			// Background part of arrow
+			&:after {
+				border-bottom-color: $first-color;
+			}
+		}
+	}
+
+	&.Bottom {
+		.Content {
+			// Border part of arrow
+			&:before {
+				border-top-color: lighten($first-color, 2);
+			}
+
+			// Background part of arrow
+			&:after {
+				border-top-color: $second-color;
+			}
+		}
+	}
+
+	&.Left.Center .Content {
+		// Border part of arrow
+		&:before {
+			border-right-color:lighten($first-color, 2);
+		}
+
+		// Background part of arrow
+		&:after {
+			border-right-color: lighten($second-color, 3);
+		}
+	}
+
+	&.Right.Center .Content {
+		// Border part of arrow
+		&:before {
+			border-left-color: lighten($first-color, 2);
+		}
+
+		// Background part of arrow
+		&:after {
+			border-left-color: lighten($second-color, 3);
+		}
+	}
+}
